@@ -1,14 +1,18 @@
 {
-	"name": "Name of Event",
-	"start": "",
-	"end": "",
-	"allow-private": true,
-	"db": {
-		"type": "sqlite"
-	},
-	"messages": {
-		"sent-message": "",
-		"verified-address": "",
-		"removed-address": ""
+	"express": {
+		"name": "Name of Event",
+		"start": "",
+		"end": "",
+		"allow-private": true,
+		"db": {
+			"type": "sqlite"
+		},
+		"messages": {
+			"sent-message": "",
+			"verified-address": "",
+			"removed-address": ""
+		},
+		"port": 3000,
+		"basepath": ""
 	}
 }

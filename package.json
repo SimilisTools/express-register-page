@@ -13,12 +13,14 @@
   "dependencies": {
     "body-parser": "1.x",
     "compression": "1.x",
-    "ejs": "1.x",
+    "ejs": "2.x",
     "errorhandler": "1.x",
     "express": "4.x",
     "less-middleware": "1.0.x",
-    "mysql": "2.x",
-    "nconf": "0.6.x"
+    "nconf": "0.7.x",
+    "sqlite3": "3.x",
+    "nodemailer": "1.x",
+    "email-templates": "1.x"
   },
   "author": "Toni Hermoso",
   "license": "GPLv3"
