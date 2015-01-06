@@ -1,0 +1,14 @@
+{
+	"name": "Name of Event",
+	"start": "",
+	"end": "",
+	"allow-private": true,
+	"db": {
+		"type": "sqlite"
+	},
+	"messages": {
+		"sent-message": "",
+		"verified-address": "",
+		"removed-address": ""
+	}
+}
