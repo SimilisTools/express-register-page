@@ -35,6 +35,7 @@ var server = app.listen(config.port);
 var register = require('./routes/register.js');
 var verify = require('./routes/verify.js');
 var list = require('./routes/list.js');
+var remove = require('./routes/remove.js');
 
 
 // Now views
@@ -55,6 +56,7 @@ app.get( basepath + '/', function(req, res){
 // app.get(basepath + '/verify', verify.verifyAddress);
 // List addresses
 // app.get(basepath + '/list', list.listAddresses);
-
+// Remove address
+// app.post(basepath + '/remove', remove.removeAddress);
 
 console.log("Seqserver listening on port " + config.port);

@@ -8,11 +8,15 @@
 			"type": "sqlite"
 		},
 		"messages": {
-			"sent-message": "",
-			"verified-address": "",
-			"removed-address": ""
+			"sent-message": "A verification message has been sent to the provided address.",
+			"verified-address": "Your address has been verified. You're registered!",
+			"removed-address": "Your address has been removed."
 		},
 		"port": 3000,
-		"basepath": ""
+		"basepath": "",
+		"email": {
+			"type": "SMTP",
+			"from": "myemail@example.com"
+		}
 	}
 }
