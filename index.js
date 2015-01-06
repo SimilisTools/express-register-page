@@ -32,6 +32,10 @@ app.set("config", config);
 // Launch server
 var server = app.listen(config.port);
 
+var register = require('./routes/register.js');
+var verify = require('./routes/verify.js');
+var list = require('./routes/list.js');
+
 
 // Now views
 app.set('views', __dirname + '/views');
@@ -39,6 +43,18 @@ app.engine('html', require('ejs').renderFile);
 
 app.use(lessMiddleware(__dirname + '/public')); // TODO: Minor, allow other paths
 app.use(basepath, express.static(__dirname + '/public'))
+
+// Landing
+app.get( basepath + '/', function(req, res){
+	res.render('index.html');
+})
+
+// Register address
+// app.post(basepath + '/register', register.registerAddress);
+// Verify address
+// app.get(basepath + '/verify', verify.verifyAddress);
+// List addresses
+// app.get(basepath + '/list', list.listAddresses);
 
 
 console.log("Seqserver listening on port " + config.port);
