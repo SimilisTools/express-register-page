@@ -22,14 +22,25 @@ exports.registerAddress = function(req, res) {
 		var email = req.body.email;
 		
 		// var randomString = fn.generateRandomString(); // TODO: Function for random string
-		
+
 		db.addinDB( { email: email , name: name, db: config.db }, function( err, info ) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 				// Send message or not
 				console.log( info );
+				if ( info.msg ) {
+
+					if ( info.msg === 'Saved' ) {
+						//code
+					} else if ( info.msg === 'Updated' ) {
+						//code
+					} else {
+						// we assume validated
+					}
+				}
  			} else {
 				// TODO: Process error registering
+				console.log( err );
 			}
 		});
 
