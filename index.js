@@ -55,7 +55,7 @@ app.post(basepath + '/register', register.registerAddress);
 // Verify address
 // app.get(basepath + '/verify', verify.verifyAddress);
 // List addresses
-// app.get(basepath + '/list', list.listAddresses);
+app.get(basepath + '/list', list.listAddresses);
 // Remove address
 // app.post(basepath + '/remove', remove.removeAddress);
 

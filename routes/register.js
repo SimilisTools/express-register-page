@@ -1,12 +1,11 @@
 /** Register module **/
 
 var db = require('../functions/db.js');
-var fn = require('../functions/index.js');
+//var fn = require('../functions/index.js');
 
 exports.registerAddress = function(req, res) {
 
 	var config = req.app.set('config');
-	
 	
 	if ( !req.body.email || req.body.email === '') {
 		// TODO: Return error page. Check in webform as well.
@@ -22,12 +21,13 @@ exports.registerAddress = function(req, res) {
 		
 		var email = req.body.email;
 		
-		var randomString = fn.generateRandomString(); // TODO: Function for random string
+		// var randomString = fn.generateRandomString(); // TODO: Function for random string
 		
-		db.addinDB( { email: email , name: name }, function( err, info ) {
+		db.addinDB( { email: email , name: name, db: config.db }, function( err, info ) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 				// Send message or not
+				console.log( info );
  			} else {
 				// TODO: Process error registering
 			}
