@@ -51,7 +51,7 @@ app.get( basepath + '/', function(req, res){
 })
 
 // Register address
-// app.post(basepath + '/register', register.registerAddress);
+app.post(basepath + '/register', register.registerAddress);
 // Verify address
 // app.get(basepath + '/verify', verify.verifyAddress);
 // List addresses
