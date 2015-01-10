@@ -4,7 +4,16 @@
 </head>
 <body>
 <div>
-You yust registered with <%= email %>.
+<%if (verified) { %>
+<p>You're already registered!</p>
+<% } else { %>
+You just registered with <%= email %>.
+<%if (previous) { %>
+<p>You registered a few other times. Please verify the last email you should receive shortly.</p>
+<% } else { %>
+<p>Please verify the email you should receive shortly.</p>
+<% } %>
+<% } %>
 </div>
 </body>
 </html>
