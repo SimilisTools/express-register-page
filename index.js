@@ -54,11 +54,13 @@ app.get( basepath + '/', function(req, res){
 app.post(basepath + '/register', register.registerAddress);
 // Verify address for registering
 app.get(basepath + '/register/:email/:strid', verify.verifyAddress);
-// List addresses
-app.get(basepath + '/list', list.listAddresses);
+
 // Remove address
 app.post(basepath + '/remove', remove.removeAddress);
 // Verify address for removing
 app.get(basepath + '/remove/:email/:rmvid', remove.verifyAddress);
+
+// List addresses
+app.get(basepath + '/list', list.listAddresses);
 
 console.log("Seqserver listening on port " + config.port);

@@ -12,7 +12,7 @@ exports.addinDB = function( params, cb ){
 		
 		var db = new sqlite3.Database( dbfile );
 		db.serialize(function() {
-			db.run('create table if not exists Register (name TEXT, email TEXT, strid TEXT, verified BOOLEAN)');
+			db.run('create table if not exists Register (name TEXT, email TEXT, strid TEXT, rmvid TEXT, verified BOOLEAN)');
 		
 			// Let's check if email
 			db.all("SELECT verified from Register where email = '" + params.email + "'", function(err, rows) {
