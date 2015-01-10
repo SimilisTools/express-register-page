@@ -18,11 +18,12 @@ exports.verifyAddress = function(req, res) {
 				console.log( info );
 			} else {
 				// TODO: Process error registering
+				console.log( err );
 			}
 		});
 		
 	} else {
-		
+		console.log("Not!");
 	}
 	
 

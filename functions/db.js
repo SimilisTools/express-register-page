@@ -101,7 +101,7 @@ exports.checkinDB = function( params, cb ){
 	
 			var db = new sqlite3.Database( dbfile );
 			db.serialize(function() {
-	
+
 				db.all("SELECT verified from Register where email='" + params.email + "' AND strid='" + params.strid + "'", function(err, rows) {
 					if (! err ) {
 						if ( rows.length > 0 ) {
@@ -131,8 +131,7 @@ exports.checkinDB = function( params, cb ){
 				
 			});
 			
-		
-			db.close();
+
 		} else {
 			err = { "msg": "No proper parameters" };
 			cb( err, info );
