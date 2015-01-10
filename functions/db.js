@@ -20,7 +20,7 @@ exports.addinDB = function( params, cb ){
 				if ( !err ) {
 
 					if ( rows.length < 1 ) {
-						var stmt = db.prepare("INSERT INTO Register (name, email, strid, verified) VALUES ('"+ params.name + "', '" + params.email + "', 'XXXXX', 0 )");
+						var stmt = db.prepare("INSERT INTO Register (name, email, strid, verified) VALUES ('"+ params.name + "', '" + params.email + "', '"+params.strID+"', 0 )");
 						stmt.run();
 						stmt.finalize();
 						info = { "msg": "Saved" };
@@ -33,7 +33,7 @@ exports.addinDB = function( params, cb ){
 								cb( err, info );
 								db.close();
 							} else {
-								var stmt = db.prepare("UPDATE Register SET name = '"+ params.name + "', strid = 'UUUU' where email='"+params.email+"'");
+								var stmt = db.prepare("UPDATE Register SET name = '"+ params.name + "', strid = '"+params.strID+"' where email='"+params.email+"'");
 								stmt.run();
 								stmt.finalize();
 								info = { "msg": "Updated" };

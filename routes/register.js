@@ -1,7 +1,7 @@
 /** Register module **/
 
 var db = require('../functions/db.js');
-//var fn = require('../functions/index.js');
+var sm = require('../functions/sm.js');
 
 exports.registerAddress = function(req, res) {
 
@@ -21,9 +21,9 @@ exports.registerAddress = function(req, res) {
 		
 		var email = req.body.email;
 		
-		// var randomString = fn.generateRandomString(); // TODO: Function for random string
+		var randomString = generateRandomString(); // TODO: Function for random string
 
-		db.addinDB( { email: email , name: name, db: config.db }, function( err, info ) {
+		db.addinDB( { email: email , name: name, strID: randomString, db: config.db }, function( err, info ) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 				// Send message or not
@@ -32,10 +32,25 @@ exports.registerAddress = function(req, res) {
 
 					if ( info.msg === 'Saved' ) {
 						//code
+						var subject = "Registered";
+						var body = "Registered! Verify tal " + randomString;
+						sm.sendMail( config.email, email, subject, body, function( err, info ) {
+							console.log( "ERR " + err );
+							console.log( info );
+							res.render( 'register.html',  { email: email, previous: false } );
+						});
 					} else if ( info.msg === 'Updated' ) {
 						//code
+						var subject = "Registered";
+						var body = "Registered again! Verify tal " + randomString;
+						sm.sendMail( config.email, email, subject, body, function( err, info ) {
+							console.log( "ERR " + err );
+							console.log( info );
+							res.render( 'register.html',  { email: email, previous: true } );
+						});
 					} else {
 						// we assume validated
+						res.render( 'already.html',  { email: email } );
 					}
 				}
  			} else {
@@ -47,3 +62,8 @@ exports.registerAddress = function(req, res) {
 	}
 	
 };
+
+function generateRandomString() {
+	
+	return 'XXXX';
+}
