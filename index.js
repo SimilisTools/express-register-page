@@ -53,7 +53,7 @@ app.get( basepath + '/', function(req, res){
 // Register address
 app.post(basepath + '/register', register.registerAddress);
 // Verify address
-// app.get(basepath + '/verify', verify.verifyAddress);
+app.get(basepath + '/verify', verify.verifyAddress);
 // List addresses
 app.get(basepath + '/list', list.listAddresses);
 // Remove address

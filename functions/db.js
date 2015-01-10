@@ -89,3 +89,57 @@ exports.listinDB = function( params, cb ){
 	}
 	
 };
+
+exports.checkinDB = function( params, cb ){
+
+	var info = [];
+	var err = null;
+
+	if ( params.db && params.db.type ) {
+
+		if ( params.email && params.strid ) {
+	
+			var db = new sqlite3.Database( dbfile );
+			db.serialize(function() {
+	
+				db.all("SELECT verified from Register where email='" + params.email + "' AND strid='" + params.strid + "'", function(err, rows) {
+					if (! err ) {
+						if ( rows.length > 0 ) {
+							if ( rows[0].verified ) {
+								info = { "msg": "Address already verified" };
+								cb( err, info );
+								db.close();
+							} else {
+								var stmt = db.prepare("UPDATE Register SET verified = 1 where email='" + params.email + "' AND strid='" + params.strid + "'");
+								stmt.run();
+								stmt.finalize();
+								info = { "msg": "Verified" };
+								cb( err, info );
+								db.close();
+							}
+						} else {
+							info = { "msg": "Email or ID do not exist." };
+							cb( err, info );
+							db.close();
+						}
+					} else {
+						err = { "msg": "Error retrieving" };
+						cb( err, info );
+						db.close();
+					}
+				});
+				
+			});
+			
+		
+			db.close();
+		} else {
+			err = { "msg": "No proper parameters" };
+			cb( err, info );
+		}
+		
+	} else {
+		err = { "msg": "No DB connection" };
+		cb( err, info );
+	}
+};
