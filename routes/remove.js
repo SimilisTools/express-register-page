@@ -1,4 +1,7 @@
 /** Remove address **/
+var db = require('../functions/db.js');
+var sm = require('../functions/sm.js');
+var rs = require('random-string');
 
 exports.removeAddress = function(req, res) {
 
@@ -12,16 +15,16 @@ exports.removeAddress = function(req, res) {
 		
 		var email = req.body.email;
 		
-		var randomString = generateRandomString(); // TODO: Function for random string
+		var randomString = rs();
 
-		db.rmvfromDB( { email: email , rmvID: randomString, db: config.db }, function( err, info ) {
+		db.rmvfromDB( { email: email , rmvid: randomString, db: config.db }, function( err, info ) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 				// Send message or not
 				console.log( info );
 				if ( info.msg ) {
 
-					if ( info.msg === 'Removed' ) {
+					if ( info.msg === 'To-remove' ) {
 						//code
 						var subject = "Registered";
 						var body = "Removed! Confirm removal at " + randomString;
@@ -42,30 +45,30 @@ exports.removeAddress = function(req, res) {
 		});
 
 	}
+}
 
-	exports.verifyAddress = function(req, res) {
+exports.verifyAddress = function(req, res) {
 	
-		var config = req.app.set('config');
+	var config = req.app.set('config');
+	
+	if ( req.params.email && req.params.rmvid ) {
 		
-		if ( req.params.email && req.params.strid ) {
-			
-			email = req.params.email;
-			rmvid = req.params.rmvid;
-			
-			db.checkRmvfromDB( { email: email, rmvid: rmvid, db: config.db }, function( err, info ) {
-				if ( !err ) {
-					// TODO: Depending on info outcome
-					console.log( info );
-				} else {
-					// TODO: Process error registering
-					console.log( err );
-				}
-			});
-			
-		} else {
-			console.log("Not!");
-		}
+		email = req.params.email;
+		rmvid = req.params.rmvid;
 		
+		db.checkRmvfromDB( { email: email, rmvid: rmvid, db: config.db }, function( err, info ) {
+			if ( !err ) {
+				// TODO: Depending on info outcome
+				console.log( info );
+			} else {
+				// TODO: Process error registering
+				console.log( err );
+			}
+		});
+		
+	} else {
+		console.log("Not!");
+	}
+	
 
-	};
 };

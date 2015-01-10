@@ -20,7 +20,7 @@ exports.addinDB = function( params, cb ){
 				if ( !err ) {
 
 					if ( rows.length < 1 ) {
-						var stmt = db.prepare("INSERT INTO Register (name, email, strid, verified) VALUES ('"+ params.name + "', '" + params.email + "', '"+params.strID+"', 0 )");
+						var stmt = db.prepare("INSERT INTO Register (name, email, strid, verified) VALUES ('"+ params.name + "', '" + params.email + "', '"+params.strid+"', 0 )");
 						stmt.run();
 						stmt.finalize();
 						info = { "msg": "Saved" };
@@ -29,11 +29,11 @@ exports.addinDB = function( params, cb ){
 					} else {
 						if ( rows[0] ) {
 							if ( rows[0].verified ) {
-								info = { "msg": "Validated" };
+								info = { "msg": "Already-verified" };
 								cb( err, info );
 								db.close();
 							} else {
-								var stmt = db.prepare("UPDATE Register SET name = '"+ params.name + "', strid = '"+params.strID+"' where email='"+params.email+"'");
+								var stmt = db.prepare("UPDATE Register SET name = '"+ params.name + "', strid = '"+params.strid+"' where email='"+params.email+"'");
 								stmt.run();
 								stmt.finalize();
 								info = { "msg": "Updated" };
@@ -106,7 +106,7 @@ exports.checkinDB = function( params, cb ){
 					if (! err ) {
 						if ( rows.length > 0 ) {
 							if ( rows[0].verified ) {
-								info = { "msg": "Address already verified" };
+								info = { "msg": "Already-verified" };
 								cb( err, info );
 								db.close();
 							} else {
@@ -118,7 +118,7 @@ exports.checkinDB = function( params, cb ){
 								db.close();
 							}
 						} else {
-							info = { "msg": "Email or ID do not exist." };
+							info = { "msg": "Not-exists" };
 							cb( err, info );
 							db.close();
 						}
@@ -142,3 +142,99 @@ exports.checkinDB = function( params, cb ){
 		cb( err, info );
 	}
 };
+
+
+exports.rmvfromDB = function( params, cb ){
+
+	var info = [];
+	var err = null;
+
+	if ( params.db && params.db.type ) {
+
+		if ( params.email && params.rmvid ) {
+	
+			var db = new sqlite3.Database( dbfile );
+			db.serialize(function() {
+
+				db.all("SELECT * from Register where email='" + params.email + "'", function(err, rows) {
+					if (! err ) {
+						if ( rows.length > 0 ) {
+							var stmt = db.prepare("UPDATE Register SET rmvid = '"+params.rmvid+"' where email='" + params.email + "'");
+							stmt.run();
+							stmt.finalize();
+							info = { "msg": "To-remove" };
+							cb( err, info );
+							db.close();
+						} else {
+							info = { "msg": "Not-exists" };
+							cb( err, info );
+							db.close();
+						}
+					} else {
+						err = { "msg": "Error retrieving" };
+						cb( err, info );
+						db.close();
+					}
+				});
+				
+			});
+			
+
+		} else {
+			err = { "msg": "No proper parameters" };
+			cb( err, info );
+		}
+		
+	} else {
+		err = { "msg": "No DB connection" };
+		cb( err, info );
+	}
+};
+
+exports.checkRmvfromDB = function( params, cb ){
+	
+	var info = [];
+	var err = null;
+
+	if ( params.db && params.db.type ) {
+
+		if ( params.email && params.rmvid ) {
+	
+			var db = new sqlite3.Database( dbfile );
+			db.serialize(function() {
+
+				db.all("SELECT * from Register where email='" + params.email + "' AND rmvid='" + params.rmvid + "'", function(err, rows) {
+					if (! err ) {
+						if ( rows.length > 0 ) {
+							var stmt = db.prepare("DELETE FROM Register where email='" + params.email + "' AND rmvid='" + params.rmvid + "'");
+							stmt.run();
+							stmt.finalize();
+							info = { "msg": "Removed" };
+							cb( err, info );
+							db.close();
+						} else {
+							info = { "msg": "Not-exists" };
+							cb( err, info );
+							db.close();
+						}
+					} else {
+						err = { "msg": "Error retrieving" };
+						cb( err, info );
+						db.close();
+					}
+				});
+				
+			});
+			
+
+		} else {
+			err = { "msg": "No proper parameters" };
+			cb( err, info );
+		}
+		
+	} else {
+		err = { "msg": "No DB connection" };
+		cb( err, info );
+	}
+};
+

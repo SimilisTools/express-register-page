@@ -2,6 +2,7 @@
 
 var db = require('../functions/db.js');
 var sm = require('../functions/sm.js');
+var rs = require('random-string');
 
 exports.registerAddress = function(req, res) {
 
@@ -21,9 +22,9 @@ exports.registerAddress = function(req, res) {
 		
 		var email = req.body.email;
 		
-		var randomString = generateRandomString(); // TODO: Function for random string
+		var randomString = rs(); // TODO: Function for random string
 
-		db.addinDB( { email: email , name: name, strID: randomString, db: config.db }, function( err, info ) {
+		db.addinDB( { email: email , name: name, strid: randomString, db: config.db }, function( err, info ) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 				// Send message or not

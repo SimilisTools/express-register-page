@@ -33,10 +33,8 @@ app.set("config", config);
 var server = app.listen(config.port);
 
 var register = require('./routes/register.js');
-var verify = require('./routes/verify.js');
-var list = require('./routes/list.js');
 var remove = require('./routes/remove.js');
-
+var list = require('./routes/list.js');
 
 // Now views
 app.set('views', __dirname + '/views');
@@ -53,7 +51,7 @@ app.get( basepath + '/', function(req, res){
 // Register address
 app.post(basepath + '/register', register.registerAddress);
 // Verify address for registering
-app.get(basepath + '/register/:email/:strid', verify.verifyAddress);
+app.get(basepath + '/register/:email/:strid', register.verifyAddress);
 
 // Remove address
 app.post(basepath + '/remove', remove.removeAddress);
