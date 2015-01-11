@@ -31,11 +31,11 @@ exports.removeAddress = function(req, res) {
 						sm.sendMail( config.email, email, subject, body, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
-							res.render( 'remove.html',  { email: email, removed: true } );
+							res.render( 'remove.html',  { email: email, done: false, removed: true } );
 						});
 					} else {
 						// we assume validated
-						res.render( 'remove.html',  { email: email, removed: false } );
+						res.render( 'remove.html',  { email: email, done: false, removed: false } );
 					}
 				}
  			} else {
@@ -60,6 +60,7 @@ exports.verifyAddress = function(req, res) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 				console.log( info );
+				res.render( 'remove.html', { email: email, done: true } );
 			} else {
 				// TODO: Process error registering
 				console.log( err );

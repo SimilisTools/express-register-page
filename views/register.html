@@ -1,9 +1,12 @@
 <html>
 <head>
-	<title>Event</title>
+	<title>Event - Registration</title>
 </head>
 <body>
 <div>
+<%if (done) { %>
+<p>You've just verified your address!</p>
+<% } else { %>
 <%if (verified) { %>
 <p>You're already registered!</p>
 <% } else { %>
@@ -12,6 +15,7 @@ You just registered with <%= email %>.
 <p>You registered a few other times. Please verify the last email you should receive shortly.</p>
 <% } else { %>
 <p>Please verify the email you should receive shortly.</p>
+<% } %>
 <% } %>
 <% } %>
 </div>

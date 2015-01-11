@@ -38,7 +38,7 @@ exports.registerAddress = function(req, res) {
 						sm.sendMail( config.email, email, subject, body, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
-							res.render( 'register.html',  { email: email, verified: false, previous: false } );
+							res.render( 'register.html',  { email: email, done: false, verified: false, previous: false } );
 						});
 					} else if ( info.msg === 'Updated' ) {
 						//code
@@ -47,11 +47,11 @@ exports.registerAddress = function(req, res) {
 						sm.sendMail( config.email, email, subject, body, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
-							res.render( 'register.html',  { email: email, verified: false, previous: true } );
+							res.render( 'register.html',  { email: email, done: false, verified: false, previous: true } );
 						});
 					} else {
 						// we assume validated
-						res.render( 'register.html',  { email: email, verified: true } );
+						res.render( 'register.html',  { email: email, done: false, verified: true } );
 					}
 				}
  			} else {
@@ -77,6 +77,7 @@ exports.verifyAddress = function(req, res) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 				console.log( info );
+				res.render( 'register.html',  { email: email, done: true } );
 			} else {
 				// TODO: Process error registering
 				console.log( err );
