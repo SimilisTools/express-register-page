@@ -11,9 +11,10 @@ exports.listAddresses = function(req, res) {
 		if ( !err ) {
 			// TODO: Depending on info outcome
 			// Send message or not
-			console.log( info );
+			res.send( info );
 		} else {
 			// TODO: Process error registering
+			res.send();
 		}
 	});
 };
