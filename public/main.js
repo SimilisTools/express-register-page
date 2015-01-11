@@ -1,5 +1,3 @@
-console.log("Loaded!");
-
 $( document ).ready(function() {
 
 	// TODO: handle basepath better here
@@ -23,9 +21,8 @@ $( document ).ready(function() {
 				
 			},
 			complete: function() {
-				console.log("next!");
 				// Schedule the next request when the current one's complete
-				setTimeout(worker, 5000);
+				setTimeout(worker, 10000);
 			}
 		});
 	})();

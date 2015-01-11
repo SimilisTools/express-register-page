@@ -5,7 +5,8 @@
 		"end": "",
 		"allow-private": true,
 		"db": {
-			"type": "sqlite"
+			"type": "sqlite",
+			"file": "register.db"
 		},
 		"messages": {
 			"sent-message": "A verification message has been sent to the provided address.",

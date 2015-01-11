@@ -1,6 +1,5 @@
 /** DB functions here **/
 var sqlite3 = require('sqlite3');
-var dbfile = "Require.db";
 
 exports.addinDB = function( params, cb ){
 	
@@ -8,9 +7,9 @@ exports.addinDB = function( params, cb ){
 	var info = {};
 	var err = null;
 
-	if ( params.db && params.db.type ) {
+	if ( params.db && params.db.type && params.db.file ) {
 		
-		var db = new sqlite3.Database( dbfile );
+		var db = new sqlite3.Database( params.db.file );
 		db.serialize(function() {
 			db.run('create table if not exists Register (name TEXT, email TEXT, strid TEXT, rmvid TEXT, verified BOOLEAN)');
 		
@@ -66,9 +65,9 @@ exports.listinDB = function( params, cb ){
 	var info = [];
 	var err = null;
 	
-	if ( params.db && params.db.type ) {
+	if ( params.db && params.db.type && params.db.file ) {
 
-		var db = new sqlite3.Database( dbfile );
+		var db = new sqlite3.Database( params.db.file );
 		db.serialize(function() {
 
 			db.all("SELECT name from Register", function(err, rows) {
@@ -97,9 +96,9 @@ exports.checkinDB = function( params, cb ){
 
 	if ( params.db && params.db.type ) {
 
-		if ( params.email && params.strid ) {
+		if ( params.email && params.strid && params.db.file ) {
 	
-			var db = new sqlite3.Database( dbfile );
+			var db = new sqlite3.Database( params.db.file );
 			db.serialize(function() {
 
 				db.all("SELECT verified from Register where email='" + params.email + "' AND strid='" + params.strid + "'", function(err, rows) {
@@ -149,11 +148,11 @@ exports.rmvfromDB = function( params, cb ){
 	var info = [];
 	var err = null;
 
-	if ( params.db && params.db.type ) {
+	if ( params.db && params.db.type && params.db.file ) {
 
 		if ( params.email && params.rmvid ) {
 	
-			var db = new sqlite3.Database( dbfile );
+			var db = new sqlite3.Database( params.db.file );
 			db.serialize(function() {
 
 				db.all("SELECT * from Register where email='" + params.email + "'", function(err, rows) {
@@ -196,11 +195,11 @@ exports.checkRmvfromDB = function( params, cb ){
 	var info = [];
 	var err = null;
 
-	if ( params.db && params.db.type ) {
+	if ( params.db && params.db.type && params.db.file ) {
 
 		if ( params.email && params.rmvid ) {
 	
-			var db = new sqlite3.Database( dbfile );
+			var db = new sqlite3.Database( params.db.file );
 			db.serialize(function() {
 
 				db.all("SELECT * from Register where email='" + params.email + "' AND rmvid='" + params.rmvid + "'", function(err, rows) {
