@@ -4,7 +4,6 @@ var config = nconfig.get("express");
 var errorhandler = require("errorhandler");
 var bodyParser = require('body-parser');
 var compression = require('compression');
-var nodemailer = require("nodemailer");
 
 var lessMiddleware = require('less-middleware');
 
