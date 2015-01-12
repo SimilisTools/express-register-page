@@ -2,10 +2,17 @@ $( document ).ready(function() {
 
 	// TODO: handle basepath better here
 	
+	var current_url = window.location.href;
+	
+	var re = /\/\w+\.htm\S$/;
+	if ( re.test( current_url ) ){
+		current_url.replace( re , "/");
+	}
+	
 	// http://stackoverflow.com/questions/5052543/how-to-fire-ajax-request-periodically
 	(function worker() {
 		$.ajax({
-			url: '/list', 
+			url: current_url + '/list', 
 			success: function(data) {
 				if ( data.length > 0 ) {
 					$( "#list ").empty();
