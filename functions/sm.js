@@ -5,13 +5,16 @@ var sendmailTransport = require('nodemailer-sendmail-transport');
 
 exports.sendMail = function( params, to, subject, body, cb ) {
 
-	// var transporter = nodemailer.createTransport({
-	//	type: params.type
-	// });
-	var options = {
-		"path": "/usr/sbin/sendmail"
+	if ( params.type === 'sendmail' ) {
+		var options = {
+			"path": params.path
+		};
+		var transporter = nodemailer.createTransport( sendmailTransport( options ) ) ;
+	} else {
+		var transporter = nodemailer.createTransport({
+			type: params.type
+		});
 	}
-	var transporter = nodemailer.createTransport(sendmailTransport(options));
 
 	var mailOptions = {
 		from: params.from,

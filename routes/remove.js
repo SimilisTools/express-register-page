@@ -24,10 +24,12 @@ exports.removeAddress = function(req, res) {
 				console.log( info );
 				if ( info.msg ) {
 
+					var rAddress = config.basepath + "/remove/" + email + "/" + randomString;
+
 					if ( info.msg === 'To-remove' ) {
 						//code
 						var subject = "Registered";
-						var body = "Removed! Confirm removal at " + randomString;
+						var body = "Removed! Confirm removal at " + rAddress;
 						sm.sendMail( config.email, email, subject, body, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );

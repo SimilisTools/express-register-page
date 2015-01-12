@@ -1,8 +1,16 @@
 {
 	"express": {
-		"name": "Name of Event",
-		"start": "",
-		"end": "",
+		"event": {
+			"title": "Name of Event",
+			"description": "Description of event",
+			"start": "2014-02-27 10.30",
+			"end": "2014-02-27 17.00",
+			"location": {
+				"name": "My House",
+				"address": "In the middle of the street",
+				"coordinates": "0,0"
+			}
+		},
 		"allow-private": true,
 		"db": {
 			"type": "sqlite",
@@ -16,7 +24,8 @@
 		"port": 3000,
 		"basepath": "",
 		"email": {
-			"type": "SMTP",
+			"type": "sendmail",
+			"path": "/usr/sbin/sendmail",
 			"from": "myemail@example.com"
 		}
 	}

@@ -31,10 +31,12 @@ exports.registerAddress = function(req, res) {
 				console.log( info );
 				if ( info.msg ) {
 
+					var vAddress = config.basepath + "/register/" + email + "/" + randomString;
+					
 					if ( info.msg === 'Saved' ) {
 						//code
 						var subject = "Registered";
-						var body = "Registered! Verify tal " + randomString;
+						var body = "Registered! Verify at " + vAddress;
 						sm.sendMail( config.email, email, subject, body, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
@@ -43,7 +45,7 @@ exports.registerAddress = function(req, res) {
 					} else if ( info.msg === 'Updated' ) {
 						//code
 						var subject = "Registered";
-						var body = "Registered again! Verify tal " + randomString;
+						var body = "Registered again! Verify at " + vAddress;
 						sm.sendMail( config.email, email, subject, body, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );

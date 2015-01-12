@@ -45,7 +45,9 @@ app.use(basepath, express.static(__dirname + '/public'))
 
 // Landing
 app.get( basepath + '/', function(req, res){
-	res.render('index.html', { basepath: basepath } );
+	var params = config.event;
+	params.basepath = basepath;
+	res.render('index.html', params );
 })
 
 // Register address
