@@ -11,7 +11,7 @@ $( document ).ready(function() {
 	
 	current_url.replace( /\/+$/, "/" );
 	
-	if(str.substr(-1) == '/') {
+	if( current_url.substr(-1) == '/' ) {
 		current_url = current_url + "list";
 	} else {
 		current_url = current_url + "/list";
