@@ -9,8 +9,9 @@ $( document ).ready(function() {
 		current_url.replace( re , "/");
 	}
 	
+	current_url.replace( /\/$/, "" );
 	current_url = current_url + "/list";
-	current_url.replace( "//", "/" );
+
 	
 	// http://stackoverflow.com/questions/5052543/how-to-fire-ajax-request-periodically
 	(function worker() {
