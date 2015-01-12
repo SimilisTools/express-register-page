@@ -38,6 +38,8 @@ var list = require('./routes/list.js');
 
 // Now views
 app.set('views', __dirname + '/views');
+app.set('mail', __dirname + '/mail');
+
 app.engine('html', require('ejs').renderFile);
 
 app.use(lessMiddleware(__dirname + '/public')); // TODO: Minor, allow other paths

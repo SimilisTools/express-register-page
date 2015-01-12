@@ -24,13 +24,14 @@ exports.removeAddress = function(req, res) {
 				console.log( info );
 				if ( info.msg ) {
 
-					var rAddress = config.basepath + "/remove/" + email + "/" + randomString;
+					var emailconf =  config.email;
+					emailconf.templates = req.app.set('mail');
+				
+					var rAddress = config.server + config.basepath + "/remove/" + email + "/" + randomString;
 
 					if ( info.msg === 'To-remove' ) {
-						//code
-						var subject = "Registered";
-						var body = "Removed! Confirm removal at " + rAddress;
-						sm.sendMail( config.email, email, subject, body, function( err, info ) {
+						
+						sm.sendMail( emailconf , email, "remove", { "address": rAddress }, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
 							res.render( 'remove.html',  { email: email, done: false, removed: true } );

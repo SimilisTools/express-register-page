@@ -23,6 +23,7 @@
 		},
 		"port": 3000,
 		"basepath": "",
+		"server": "http://www.example.com",
 		"email": {
 			"type": "sendmail",
 			"path": "/usr/sbin/sendmail",

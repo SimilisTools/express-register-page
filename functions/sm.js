@@ -2,29 +2,40 @@
 
 var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
+var emailTemplates = require('email-templates');
 
-exports.sendMail = function( params, to, subject, body, cb ) {
+exports.sendMail = function( params, to, options, cb ) {
 
-	if ( params.type === 'sendmail' ) {
-		var options = {
-			"path": params.path
-		};
-		var transporter = nodemailer.createTransport( sendmailTransport( options ) ) ;
-	} else {
-		var transporter = nodemailer.createTransport({
-			type: params.type
-		});
-	}
+	emailTemplates( params.templates, function(err, template ) {
 
-	var mailOptions = {
-		from: params.from,
-		to: to,
-		subject: subject,
-		text: body,
-	};
-
-	// send mail with defined transport object
-	transporter.sendMail(mailOptions, function(err, info){
-		cb( err, info );
+		if (err) {
+			console.log(err);
+		} else {
+		
+			var transporter;
+			if ( params.type === 'sendmail' ) {
+				var options = {
+					"path": params.path
+				};
+				transporter = nodemailer.createTransport( sendmailTransport( options ) ) ;
+			} else {
+				transporter = nodemailer.createTransport({
+					type: params.type
+				});
+			}
+		  
+			var mailOptions = {
+				from: params.from,
+				to: to,
+				subject: subject,
+				text: body,
+			};
+		  
+			// send mail with defined transport object
+			transporter.sendMail(mailOptions, function(err, info){
+				cb( err, info );
+			});
+		
+		}
 	});
 };

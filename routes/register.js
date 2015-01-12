@@ -31,22 +31,21 @@ exports.registerAddress = function(req, res) {
 				console.log( info );
 				if ( info.msg ) {
 
-					var vAddress = config.basepath + "/register/" + email + "/" + randomString;
+					var vAddress = config.server + config.basepath + "/register/" + email + "/" + randomString;
+					
+					var emailconf =  config.email;
+					emailconf.templates = req.app.set('mail');
 					
 					if ( info.msg === 'Saved' ) {
 						//code
-						var subject = "Registered";
-						var body = "Registered! Verify at " + vAddress;
-						sm.sendMail( config.email, email, subject, body, function( err, info ) {
+						sm.sendMail( emailconf , email, "register", { "address": vAddress }, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
 							res.render( 'register.html',  { email: email, done: false, verified: false, previous: false } );
 						});
 					} else if ( info.msg === 'Updated' ) {
 						//code
-						var subject = "Registered";
-						var body = "Registered again! Verify at " + vAddress;
-						sm.sendMail( config.email, email, subject, body, function( err, info ) {
+						sm.sendMail( emailconf, email, "register", { "again": true, "address": vAddress }, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
 							res.render( 'register.html',  { email: email, done: false, verified: false, previous: true } );
