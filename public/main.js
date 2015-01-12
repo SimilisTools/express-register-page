@@ -9,7 +9,7 @@ $( document ).ready(function() {
 		current_url.replace( re , "/");
 	}
 	
-	current_url.replace( /\/$/, "" );
+	current_url.replace( /\/+$/, "" );
 	current_url = current_url + "/list";
 
 	
