@@ -31,7 +31,7 @@ exports.removeAddress = function(req, res) {
 
 					if ( info.msg === 'To-remove' ) {
 						
-						sm.sendMail( emailconf , email, "remove", { "address": rAddress }, function( err, info ) {
+						sm.sendMail( emailconf, "remove", { "address": rAddress, "to": email }, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
 							res.render( 'remove.html',  { email: email, done: false, removed: true } );

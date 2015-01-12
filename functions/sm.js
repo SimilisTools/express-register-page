@@ -4,7 +4,7 @@ var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
 var emailTemplates = require('email-templates');
 
-exports.sendMail = function( params, to, options, cb ) {
+exports.sendMail = function( params, method, extra, cb ) {
 
 	emailTemplates( params.templates, function(err, template ) {
 
@@ -23,19 +23,22 @@ exports.sendMail = function( params, to, options, cb ) {
 					type: params.type
 				});
 			}
-		  
-			var mailOptions = {
-				from: params.from,
-				to: to,
-				subject: subject,
-				text: body,
-			};
-		  
-			// send mail with defined transport object
-			transporter.sendMail(mailOptions, function(err, info){
-				cb( err, info );
+			// Send a single email
+			template( method, extra, function(err, html, text) {
+				if (err) {
+						console.log(err);
+				} else {
+				// send mail with defined transport object
+					transporter.sendMail(  {
+						from: params.from,
+						to: extra.to,
+						html: html,
+						text: text
+					}, function(err, info){
+						cb( err, info );
+					});
+				}
 			});
-		
 		}
 	});
 };
