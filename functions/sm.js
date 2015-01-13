@@ -23,6 +23,9 @@ exports.sendMail = function( params, method, extra, cb ) {
 					type: params.type
 				});
 			}
+			
+			var subject = "["+extra.event.title+"] - "+method;
+			
 			// Send a single email
 			template( method, extra, function(err, html, text) {
 				if (err) {
@@ -32,6 +35,7 @@ exports.sendMail = function( params, method, extra, cb ) {
 					transporter.sendMail(  {
 						from: params.from,
 						to: extra.to,
+						subject: subject,
 						html: html,
 						text: text
 					}, function(err, info){

@@ -38,14 +38,14 @@ exports.registerAddress = function(req, res) {
 					
 					if ( info.msg === 'Saved' ) {
 						//code
-						sm.sendMail( emailconf , "register", { "address": vAddress, "to": email }, function( err, info ) {
+						sm.sendMail( emailconf , "register", { "address": vAddress, "to": email, "event": config.event }, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
 							res.render( 'register.html', { email: email, done: false, verified: false, previous: false } );
 						});
 					} else if ( info.msg === 'Updated' ) {
 						//code
-						sm.sendMail( emailconf, "register", { "again": true, "address": vAddress, "to": email }, function( err, info ) {
+						sm.sendMail( emailconf, "register", { "again": true, "address": vAddress, "to": email, "event": config.event }, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
 							res.render( 'register.html',  { email: email, done: false, verified: false, previous: true } );
