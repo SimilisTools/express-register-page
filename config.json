@@ -9,7 +9,15 @@
 				"name": "My House",
 				"address": "In the middle of the street",
 				"coordinates": "0,0"
-			}
+			},
+			"organizer": [
+				{
+					"name": "organizer1",
+					"img": "img1",
+					"size": 100,
+					"url": "http://www.example.com"
+				}
+			]
 		},
 		"allow-private": true,
 		"db": {
