@@ -18,8 +18,8 @@
 	<%if (event.end) { %>Final: <span class="end" itemprop="endDate"><%= event.end %></span><% } %>
 
 	<div id="location" itemscope="" itemprop="location" itemtype="http://schema.org/Place">
-		<%if (event.location.name) { %><p><%- event.location.name %></p><% } %>
-		<%if (event.location.address) { %><p><%= event.location.address %></p><% } %>
+		<%if (event.location.name) { %><p itemprop="name"><%- event.location.name %></p><% } %>
+		<%if (event.location.address) { %><p itemprop="address"><%= event.location.address %></p><% } %>
 		<%if (event.location.coordinates) { %>
 				<div id="map" data-coords="<%= event.location.coordinates %>"></div>
 		<% } %>
