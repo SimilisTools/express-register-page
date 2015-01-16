@@ -2,7 +2,7 @@
 	<%if (event.organizers.length > 0 ) { %>
 	<ul id="organizers">
 		<% for(var i=0; i < event.organizers.length; i++) {%>
-			<li class="organizer"><a href="<%= event.organizers[i].url %>"><img src="<%= event.organizers[i].img %>" alt="<%= event.organizers[i].name %>" width="<%= event.organizers[i].width %>"></a></li>
+			<li class="organizer"><a href="<%= event.organizers[i].url %>"><img src="<%= basepath %>/<%= event.organizers[i].img %>" alt="<%= event.organizers[i].name %>" width="<%= event.organizers[i].width %>"></a></li>
 		<% } %>
 	</ul>
 	<% } %>
