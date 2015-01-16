@@ -32,7 +32,6 @@
 				}
 			]
 		},
-		"allow-private": true,
 		"db": {
 			"type": "sqlite",
 			"file": "register.db"
