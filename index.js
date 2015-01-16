@@ -41,7 +41,7 @@ app.set('mail', __dirname + '/mail');
 
 app.engine('html', require('ejs').renderFile);
 
-app.use(lessMiddleware(__dirname + '/public')); // TODO: Minor, allow other paths
+app.use(basepath, lessMiddleware(__dirname + '/public')); // TODO: Minor, allow other paths
 app.use(basepath, express.static(__dirname + '/public'))
 
 // Landing

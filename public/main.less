@@ -1,12 +1,40 @@
 /** Less content below **/
 
+body {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
 #event {
 	float: left;
-	width: auto;
+	max-width: 380px;
 }
 
 #action {
 	margin-left: 2em;
 	float: left;
 	width: 250px;
+}
+
+footer {
+	width: 100%;
+	clear: both;
+	max-width: 600px;
+	
+	ul#organizers {
+		margin: 3em auto 1em 2em;
+		li.organizer {
+			display: inline;
+			list-style-type: none;
+			padding-right: 2em;
+			img {
+				border: none;
+			}
+		}
+	}
+	p {
+		margin: 0 2em;
+		font-size: 85%;
+		line-height: 1.2em;
+	}
 }
