@@ -70,7 +70,7 @@ exports.listinDB = function( params, cb ){
 		var db = new sqlite3.Database( params.db.file );
 		db.serialize(function() {
 
-			db.all("SELECT name from Register", function(err, rows) {
+			db.all("SELECT name from Register where verified=1", function(err, rows) {
 				if (! err ) {
 					cb( err, rows );
 				} else {
