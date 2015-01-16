@@ -22,6 +22,14 @@ exports.removeAddress = function(req, res) {
 				// TODO: Depending on info outcome
 				// Send message or not
 				console.log( info );
+				
+				var params = {
+					email: email,
+					event: config.event, 
+					contact: config.contact,
+					basepath: config.basepath
+				};
+				
 				if ( info.msg ) {
 
 					var emailconf =  config.email;
@@ -30,15 +38,22 @@ exports.removeAddress = function(req, res) {
 					var rAddress = config.server + config.basepath + "/remove/" + email + "/" + randomString;
 
 					if ( info.msg === 'To-remove' ) {
+					
+						params.done = false;
+						params.removed = true;
 						
-						sm.sendMail( emailconf, "remove", { "address": rAddress, "to": email, "event": config.event }, function( err, info ) {
+						sm.sendMail( emailconf, "remove", { "address": rAddress, "to": email, "event": config.event, "contact": config.contact }, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
-							res.render( 'remove.html',  { email: email, done: false, removed: true } );
+							res.render( 'remove.html', params );
 						});
 					} else {
+					
+						params.done = false;
+						params.removed = false;
+						
 						// we assume validated
-						res.render( 'remove.html',  { email: email, done: false, removed: false } );
+						res.render( 'remove.html', params );
 					}
 				}
  			} else {
@@ -63,7 +78,17 @@ exports.verifyAddress = function(req, res) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 				console.log( info );
-				res.render( 'remove.html', { email: email, done: true } );
+				
+				var params = {
+					email: email,
+					event: config.event, 
+					contact: config.contact,
+					basepath: config.basepath
+				};
+				
+				params.done = true;
+				
+				res.render( 'remove.html', params );
 			} else {
 				// TODO: Process error registering
 				console.log( err );

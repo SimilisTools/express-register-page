@@ -29,6 +29,14 @@ exports.registerAddress = function(req, res) {
 				// TODO: Depending on info outcome
 				// Send message or not
 				console.log( info );
+				
+				var params = {
+					email: email,
+					event: config.event, 
+					contact: config.contact,
+					basepath: config.basepath
+				};
+				
 				if ( info.msg ) {
 
 					var vAddress = config.server + config.basepath + "/register/" + email + "/" + randomString;
@@ -38,21 +46,35 @@ exports.registerAddress = function(req, res) {
 					
 					if ( info.msg === 'Saved' ) {
 						//code
-						sm.sendMail( emailconf , "register", { "address": vAddress, "to": email, "event": config.event }, function( err, info ) {
+						sm.sendMail( emailconf , "register", { "address": vAddress, "to": email, "event": config.event, "contact": config.contact }, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
-							res.render( 'register.html', { email: email, done: false, verified: false, previous: false } );
+							
+							params.done = false;
+							params.verified = false;
+							params.previous = false;
+							
+							res.render( 'register.html', params );
 						});
 					} else if ( info.msg === 'Updated' ) {
 						//code
-						sm.sendMail( emailconf, "register", { "again": true, "address": vAddress, "to": email, "event": config.event }, function( err, info ) {
+						sm.sendMail( emailconf, "register", { "again": true, "address": vAddress, "to": email, "event": config.event, "contact": config.contact }, function( err, info ) {
 							console.log( "ERR " + err );
 							console.log( info );
-							res.render( 'register.html',  { email: email, done: false, verified: false, previous: true } );
+							
+							params.done = false;
+							params.verified = false;
+							params.previous = true;
+							
+							res.render( 'register.html', params );
 						});
 					} else {
 						// we assume validated
-						res.render( 'register.html',  { email: email, done: false, verified: true } );
+						
+						params.done = false;
+						params.verified = true;
+						
+						res.render( 'register.html', params );
 					}
 				}
  			} else {
@@ -77,8 +99,18 @@ exports.verifyAddress = function(req, res) {
 		db.checkinDB( { email: email, strid: strid, db: config.db }, function( err, info ) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
+				
+				var params = {
+					email: email,
+					event: config.event, 
+					contact: config.contact,
+					basepath: config.basepath
+				};
+				
+				params.done = true;
+				
 				console.log( info );
-				res.render( 'register.html',  { email: email, done: true } );
+				res.render( 'register.html',  params );
 			} else {
 				// TODO: Process error registering
 				console.log( err );
@@ -92,7 +124,3 @@ exports.verifyAddress = function(req, res) {
 
 };
 
-function generateRandomString() {
-	
-	return 'XXXX';
-}

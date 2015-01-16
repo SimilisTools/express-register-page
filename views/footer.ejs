@@ -1,8 +1,8 @@
 <footer>
-	<%if (organizers.length > 0 ) { %>
+	<%if (event.organizers.length > 0 ) { %>
 	<ul id="organizers">
-		<% for(var i=0; i < organizers.length; i++) {%>
-			<li class="organizer"><a href="<%= organizers[i].url %>"><img src="<%= organizers[i].img %>" alt="<%= organizers[i].name %>" width="<%= organizers[i].width %>"></a></li>
+		<% for(var i=0; i < event.organizers.length; i++) {%>
+			<li class="organizer"><a href="<%= event.organizers[i].url %>"><img src="<%= event.organizers[i].img %>" alt="<%= event.organizers[i].name %>" width="<%= event.organizers[i].width %>"></a></li>
 		<% } %>
 	</ul>
 	<% } %>

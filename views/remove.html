@@ -1,19 +1,20 @@
 <html>
 <head>
-	<title>Event - Removal</title>
+	<title><%= event.title %> - Desinscripció</title>
 </head>
 <body>
 <div>
 <%if (done) { %>
-<p>Your address has been removed.</p>
+<p>S'ha suprimit la vostra adreça.</p>
 <% } else { %>
 <%if (removed) { %>
-<p>An email has been sent to confirm your removal.</p>
+<p>S'ha enviat un missatge per confirmar la supressió de l'adreça.</p>
 <% } else { %>
-You're not registered here! Contact bla bla.
+No hi esteu registrat!
 <% } %>
 <% } %>
 </div>
+<di id="back"><a href="<%= basepath %>">Enrere</a></div>
 <% include footer %>
 </body>
 </html>

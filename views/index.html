@@ -1,22 +1,23 @@
 <html>
 <head>
-	<title><%= title %></title>
-	<meta name="description" content="<%= description %>">
+	<title><%= event.title %></title>
+	<meta name="description" content="<%= event.description %>">
+	<meta name="keywords" content="<%= event.keywords %>" />
 	<link rel="stylesheet" href="main.css">
 	<script src="jquery-2.1.3.min.js"></script>
 	<script src="main.js"></script>
 </head>
 <body>
 <div id="event">
-	<h1><%= title %></h1>
-	<p>Primera Viquimarató Bioinformàtica per tal de millorar els continguts de Bioinformàtica i disciplines afins (genòmica, proteòmica, etc.) a la Viquipèdia en català. <a href='https://ca.wikipedia.org/wiki/Viquip%C3%A8dia:Viquimarat%C3%B3_Bioinform%C3%A0tica_2015'>Més detalls...</a></p>"
-	<%if (start) { %>From: <%= start %><% } %>
-	<%if (end) { %>To: <%= end %><% } %>
+	<h1><%= event.title %></h1>
+	<p>Primera Viquimarató Bioinformàtica per tal de millorar els continguts de Bioinformàtica i disciplines afins (genòmica, proteòmica, etc.) a la Viquipèdia en català. <a href='https://ca.wikipedia.org/wiki/Viquip%C3%A8dia:Viquimarat%C3%B3_Bioinform%C3%A0tica_2015'>Més detalls...</a></p>
+	<%if (event.start) { %>From: <%= event.start %><% } %>
+	<%if (event.end) { %>To: <%= event.end %><% } %>
 
 	<div id="location">
-		<%if (location.name) { %><%- location.name %><% } %>
-		<%if (location.address) { %><%= location.address %><% } %>
-		<%if (location.coordinates) { %><%= location.coordinates %><% } %>
+		<%if (event.location.name) { %><%- event.location.name %><% } %>
+		<%if (event.location.address) { %><%= event.location.address %><% } %>
+		<%if (event.location.coordinates) { %><%= event.location.coordinates %><% } %>
 	</div>
 </div>
 <div id="action">
