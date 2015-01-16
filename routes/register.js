@@ -7,18 +7,17 @@ var rs = require('random-string');
 exports.registerAddress = function(req, res) {
 
 	var config = req.app.set('config');
-	var params = {
+	var options = {
 		event: config.event, 
 		contact: config.contact,
 		basepath: config.basepath
 	};
 	
 	if ( !req.body.email || req.body.email === '') {
-		params.msg = config.msg.error.emailneeded;
-		res.render( 'error.html', params );
+		options.msg = config.msg.error.emailneeded;
+		res.render( 'error.html', options );
 		
 	} else {
-		params.email = email;
 		
 		// TODO: Check email address. Check in webform as well.
 		
@@ -29,6 +28,7 @@ exports.registerAddress = function(req, res) {
 		}
 		
 		var email = req.body.email;
+		options.email = email;
 		
 		var randomString = rs(); // TODO: Function for random string
 
@@ -37,9 +37,7 @@ exports.registerAddress = function(req, res) {
 				// TODO: Depending on info outcome
 				// Send message or not
 				console.log( info );
-				
 
-				
 				if ( info.msg ) {
 
 					var vAddress = config.server + config.basepath + "/register/" + email + "/" + randomString;
@@ -53,11 +51,11 @@ exports.registerAddress = function(req, res) {
 							console.log( "ERR " + err );
 							console.log( info );
 							
-							params.done = false;
-							params.verified = false;
-							params.previous = false;
+							options.done = false;
+							options.verified = false;
+							options.previous = false;
 							
-							res.render( 'register.html', params );
+							res.render( 'register.html', options );
 						});
 					} else if ( info.msg === 'Updated' ) {
 						//code
@@ -65,24 +63,24 @@ exports.registerAddress = function(req, res) {
 							console.log( "ERR " + err );
 							console.log( info );
 							
-							params.done = false;
-							params.verified = false;
-							params.previous = true;
+							options.done = false;
+							options.verified = false;
+							options.previous = true;
 							
-							res.render( 'register.html', params );
+							res.render( 'register.html', options );
 						});
 					} else {
 						// we assume validated
 						
-						params.done = false;
-						params.verified = true;
+						options.done = false;
+						options.verified = true;
 						
-						res.render( 'register.html', params );
+						res.render( 'register.html', options );
 					}
 				}
  			} else {
-				params.msg = err;
-				res.render( 'error.html', params );
+				options.msg = err;
+				res.render( 'error.html', options );
 			}
 		});
 
@@ -93,7 +91,7 @@ exports.registerAddress = function(req, res) {
 exports.verifyAddress = function(req, res) {
 
 	var config = req.app.set('config');
-	var params = {
+	var options = {
 		event: config.event, 
 		contact: config.contact,
 		basepath: config.basepath
@@ -101,29 +99,27 @@ exports.verifyAddress = function(req, res) {
 	
 	if ( req.params.email && req.params.strid ) {
 		
-		params.email = email;
-		
 		email = req.params.email;
 		strid = req.params.strid;
-		
+		options.email = email;
 		
 		db.checkinDB( { email: email, strid: strid, db: config.db }, function( err, info ) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 
-				params.done = true;
+				options.done = true;
 				
 				console.log( info );
-				res.render( 'register.html',  params );
+				res.render( 'register.html', options );
 			} else {
-				params.msg = err;
-				res.render( 'error.html', params );
+				options.msg = err;
+				res.render( 'error.html', options );
 			}
 		});
 		
 	} else {
-		params.msg = config.msg.error.emailnotprovided;
-		res.render( 'error.html', params );
+		options.msg = config.msg.error.emailnotprovided;
+		res.render( 'error.html', options );
 	}
 	
 
