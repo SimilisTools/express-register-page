@@ -40,12 +40,12 @@
 			"mail": "toniher@wikimedia.cat"
 		},
 		"port": 3000,
-		"basepath": "",
-		"server": "http://www.example.com",
+		"basepath": "/marato-bioinf-2015",
+		"server": "http://www.wikimedia.cat",
 		"email": {
 			"type": "sendmail",
 			"path": "/usr/sbin/sendmail",
-			"from": "myemail@example.com"
+			"from": "toniher@wikimedia.cat"
 		}
 	}
 }
