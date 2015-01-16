@@ -11,13 +11,13 @@
 </head>
 <body>
 <div id="wrapper">
-<div id="event">
-	<h1><%= event.title %></h1>
+<div id="event" itemscope="" itemtype="http://schema.org/Event">
+	<h1 itemprop="name"><%= event.title %></h1>
 	<p>Primera Viquimarató Bioinformàtica per tal de millorar els continguts de Bioinformàtica i disciplines afins (genòmica, proteòmica, etc.) a la Viquipèdia en català. <a href='https://ca.wikipedia.org/wiki/Viquip%C3%A8dia:Viquimarat%C3%B3_Bioinform%C3%A0tica_2015'>Més detalls...</a></p>
-	<%if (event.start) { %>From: <%= event.start %><% } %>
-	<%if (event.end) { %>To: <%= event.end %><% } %>
+	<%if (event.start) { %>Inici: <span class="start" itemprop="startDate"><%= event.start %></span><% } %>
+	<%if (event.end) { %>Final: <span class="end" itemprop="endDate"><%= event.end %></span><% } %>
 
-	<div id="location">
+	<div id="location" itemscope="" itemprop="location" itemtype="http://schema.org/Place">
 		<%if (event.location.name) { %><p><%- event.location.name %></p><% } %>
 		<%if (event.location.address) { %><p><%= event.location.address %></p><% } %>
 		<%if (event.location.coordinates) { %>

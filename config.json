@@ -4,12 +4,12 @@
 			"title": "Marató Bioinformàtica 2015",
 			"description": "Primera Viquimarató Bioinformàtica per tal de millorar els continguts de Bioinformàtica i disciplines afins (genòmica, proteòmica, etc.) a la Viquipèdia en català.",
 			"keywords": "bioinformatics, wikipedia, catalan",
-			"start": "2014-02-27 10.30",
-			"end": "2014-02-27 17.00",
+			"start": "2014-02-27 10:30",
+			"end": "2014-02-27 17:00",
 			"location": {
 				"name": "Sala Puig i Cadafalch. Institut d'Estudis Catalans (<a href='https://ca.wikipedia.org/wiki/Casa_de_Convalesc%C3%A8ncia'>Casa de Convalescència</a>)",
 				"address": "Carrer del Carme, 47. Barcelona",
-				"coordinates": "41° 22′ 52″ N, 2° 10′ 12″ E"
+				"coordinates": "2.17,41.381111"
 			},
 			"organizers": [
 				{

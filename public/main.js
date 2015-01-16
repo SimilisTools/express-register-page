@@ -43,16 +43,48 @@ $( document ).ready(function() {
 	})();
 	
 	(function mapinit() {
+	
+		var coordstr = $("#map").data("coords");
+		var coords = coordstr.split(",");
+		var coordsFloat = coords.map(function (x) { 
+			return parseFloat(x, 10); 
+		});
+		
+		var iconFeature = new ol.Feature({
+		  geometry: new ol.geom.Point( ol.proj.transform(coordsFloat, 'EPSG:4326', 'EPSG:3857') ),
+		  name: 'Event'
+		});
+
+		var iconStyle = new ol.style.Style({
+		  image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+			anchor: [0.5, 46],
+			anchorXUnits: 'fraction',
+			anchorYUnits: 'pixels',
+			opacity: 0.75,
+			src: 'marker.png'
+		  }))
+		});
+
+		iconFeature.setStyle(iconStyle);
+
+		var vectorSource = new ol.source.Vector({
+		  features: [iconFeature]
+		});
+
+		var vectorLayer = new ol.layer.Vector({
+		  source: vectorSource
+		});
+
 		var map = new ol.Map({
 		target: 'map',
 		layers: [
 		  new ol.layer.Tile({
-			source: new ol.source.MapQuest({layer: 'sat'})
-		  })
+			source: new ol.source.OSM()
+		  }), vectorLayer
 		],
 		view: new ol.View({
-		  center: ol.proj.transform([37.41, 8.82], 'EPSG:4326', 'EPSG:3857'),
-		  zoom: 8
+		  center: ol.proj.transform(coordsFloat, 'EPSG:4326', 'EPSG:3857'),
+		  zoom: 14
 		})
 		});
 	})();
