@@ -1,8 +1,6 @@
-<html>
-<head>
-	<title><%= event.title %> - Error</title>
-</head>
+<% include header %>
 <body>
+<div id="wrapper nomain">
 <h1>Error</h1>
 <div>
 <%if (msg) { %>
@@ -10,6 +8,7 @@
 <% } else { %>
 S'ha produït un error :(
 <% } %>
+</div>
 </div>
 <div id="back"><a href="<%= basepath %>">Enrere</a></div>
 <% include footer %>

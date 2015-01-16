@@ -1,7 +1,7 @@
 {
 	"express": {
 		"event": {
-			"title": "Marató Bioinformàtica 2015",
+			"title": "Viquimarató Bioinformàtica 2015",
 			"description": "Primera Viquimarató Bioinformàtica per tal de millorar els continguts de Bioinformàtica i disciplines afins (genòmica, proteòmica, etc.) a la Viquipèdia en català.",
 			"keywords": "bioinformatics, wikipedia, catalan",
 			"start": "2015-02-27 10:30",
