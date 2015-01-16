@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title><%= title %></title>
+	<meta name="description" content="<%= description %>">
 	<link rel="stylesheet" href="main.css">
 	<script src="jquery-2.1.3.min.js"></script>
 	<script src="main.js"></script>
@@ -8,30 +9,30 @@
 <body>
 <div id="event">
 	<h1><%= title %></h1>
-	<%if (description) { %><%= description %><% } %>
+	<p>Primera Viquimarató Bioinformàtica per tal de millorar els continguts de Bioinformàtica i disciplines afins (genòmica, proteòmica, etc.) a la Viquipèdia en català. <a href='https://ca.wikipedia.org/wiki/Viquip%C3%A8dia:Viquimarat%C3%B3_Bioinform%C3%A0tica_2015'>Més detalls...</a></p>"
 	<%if (start) { %>From: <%= start %><% } %>
 	<%if (end) { %>To: <%= end %><% } %>
 
 	<div id="location">
-		<%if (location.name) { %><%= location.name %><% } %>
+		<%if (location.name) { %><%- location.name %><% } %>
 		<%if (location.address) { %><%= location.address %><% } %>
 		<%if (location.coordinates) { %><%= location.coordinates %><% } %>
 	</div>
 </div>
 <div id="action">
 <div id="registration">
-<h2>Registration</h2>
+<h2>Inscripció</h2>
 <form action="<%= basepath %>/register" method="POST">
-<input type="text" name="name" placeholder="Name you want to show (optional)"><br>
-<input type="text" name="email" placeholder="Enter email address which you want to subscribe"><br>
-<input type="submit" value="Register"><br>
+<input type="text" name="name" placeholder="Nom a mostrar (opcional)"><br>
+<input type="text" name="email" placeholder="Adreça electrònica"><br>
+<input type="submit" value="Registre"><br>
 </form>
 </div>
 <div id="removal">
-<h2>Removal</h2>
+<h2>Desinscripció</h2>
 <form action="<%= basepath %>/remove" method="POST">
-<input type="text" name="email" placeholder="Enter email address you want to remove"><br>
-<input type="submit" value="Remove"><br>
+<input type="text" name="email" placeholder="Adreça electrònica"><br>
+<input type="submit" value="Suprimeix"><br>
 </form>
 </div>
 <div id="list">

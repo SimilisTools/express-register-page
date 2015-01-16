@@ -1,21 +1,33 @@
 {
 	"express": {
 		"event": {
-			"title": "Name of Event",
-			"description": "Description of event",
+			"title": "Marató Bioinformàtica 2015",
+			"description": "Primera Viquimarató Bioinformàtica per tal de millorar els continguts de Bioinformàtica i disciplines afins (genòmica, proteòmica, etc.) a la Viquipèdia en català.",
 			"start": "2014-02-27 10.30",
 			"end": "2014-02-27 17.00",
 			"location": {
-				"name": "My House",
-				"address": "In the middle of the street",
-				"coordinates": "0,0"
+				"name": "Sala Puig i Cadafalch. Institut d'Estudis Catalans (<a href='https://ca.wikipedia.org/wiki/Casa_de_Convalesc%C3%A8ncia'>Casa de Convalescència</a>)",
+				"address": "Carrer del Carme, 47. Barcelona",
+				"coordinates": "41° 22′ 52″ N, 2° 10′ 12″ E"
 			},
-			"organizer": [
+			"organizers": [
 				{
-					"name": "organizer1",
-					"img": "img1",
-					"size": 100,
-					"url": "http://www.example.com"
+					"name": "Societat Catalana de Biologia",
+					"img": "logos/logoSCB_h.png",
+					"width": 100,
+					"url": "http://blogs.iec.cat/scb/"
+				},
+				{
+					"name": "Amical Wikimedia",
+					"img": "logos/amical-logo.png",
+					"width": 100,
+					"url": "http://www.wikimedia.cat"
+				},
+				{
+					"name": "Centre de Regulació Genòmica",
+					"img": "logos/CRG-logo.png",
+					"width": 100,
+					"url": "http://www.crg.eu"
 				}
 			]
 		},
@@ -24,10 +36,8 @@
 			"type": "sqlite",
 			"file": "register.db"
 		},
-		"messages": {
-			"sent-message": "A verification message has been sent to the provided address.",
-			"verified-address": "Your address has been verified. You're registered!",
-			"removed-address": "Your address has been removed."
+		"contact": {
+			"mail": "toniher@wikimedia.cat"
 		},
 		"port": 3000,
 		"basepath": "",

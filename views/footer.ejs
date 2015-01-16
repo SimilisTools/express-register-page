@@ -1,3 +1,11 @@
 <footer>
-	FOOTER content
+	<%if (organizers.length > 0 ) { %>
+	<ul id="organizers">
+		<% for(var i=0; i < organizers.length; i++) {%>
+			<li class="organizer"><a href="<%= organizers[i].url %>"><img src="<%= organizers[i].img %>" alt="<%= organizers[i].name %>" width="<%= organizers[i].width %>"></a></li>
+		<% } %>
+	</ul>
+	<% } %>
+	<p>Es recullen les adreces per motius de logística. Després de l'esdeveniment s'esborraran totes les dades desades.</p>
+	<p>Per a qualsevol dubte, contacteu el <a href="mailto:<%= contact.mail %>">webmaster</a>.</p>
 </footer>

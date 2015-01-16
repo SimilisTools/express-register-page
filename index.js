@@ -48,6 +48,7 @@ app.use(basepath, express.static(__dirname + '/public'))
 app.get( basepath + '/', function(req, res){
 	var params = config.event;
 	params.basepath = basepath;
+	params.contact = config.contact;
 	res.render('index.html', params );
 })
 
