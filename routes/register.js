@@ -7,10 +7,18 @@ var rs = require('random-string');
 exports.registerAddress = function(req, res) {
 
 	var config = req.app.set('config');
+	var params = {
+		event: config.event, 
+		contact: config.contact,
+		basepath: config.basepath
+	};
 	
 	if ( !req.body.email || req.body.email === '') {
-		// TODO: Return error page. Check in webform as well.
+		params.msg = config.msg.error.emailneeded;
+		res.render( 'error.html', params );
+		
 	} else {
+		params.email = email;
 		
 		// TODO: Check email address. Check in webform as well.
 		
@@ -30,12 +38,7 @@ exports.registerAddress = function(req, res) {
 				// Send message or not
 				console.log( info );
 				
-				var params = {
-					email: email,
-					event: config.event, 
-					contact: config.contact,
-					basepath: config.basepath
-				};
+
 				
 				if ( info.msg ) {
 
@@ -78,8 +81,8 @@ exports.registerAddress = function(req, res) {
 					}
 				}
  			} else {
-				// TODO: Process error registering
-				console.log( err );
+				params.msg = err;
+				res.render( 'error.html', params );
 			}
 		});
 
@@ -90,35 +93,37 @@ exports.registerAddress = function(req, res) {
 exports.verifyAddress = function(req, res) {
 
 	var config = req.app.set('config');
+	var params = {
+		event: config.event, 
+		contact: config.contact,
+		basepath: config.basepath
+	};
 	
 	if ( req.params.email && req.params.strid ) {
+		
+		params.email = email;
 		
 		email = req.params.email;
 		strid = req.params.strid;
 		
+		
 		db.checkinDB( { email: email, strid: strid, db: config.db }, function( err, info ) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
-				
-				var params = {
-					email: email,
-					event: config.event, 
-					contact: config.contact,
-					basepath: config.basepath
-				};
-				
+
 				params.done = true;
 				
 				console.log( info );
 				res.render( 'register.html',  params );
 			} else {
-				// TODO: Process error registering
-				console.log( err );
+				params.msg = err;
+				res.render( 'error.html', params );
 			}
 		});
 		
 	} else {
-		console.log("Not!");
+		params.msg = config.msg.error.emailnotprovided;
+		res.render( 'error.html', params );
 	}
 	
 

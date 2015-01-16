@@ -32,6 +32,13 @@
 				}
 			]
 		},
+		"msg": {
+			"error": {
+				"emailneeded": "Cal incloure una adreça electrònica.",
+				"emailnotprovided": "No heu proporcionat una adreça correcta. Sinó, torneu-ho a provar."
+				
+			}
+		},
 		"db": {
 			"type": "sqlite",
 			"file": "register.db"

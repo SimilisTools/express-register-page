@@ -8,7 +8,8 @@ exports.removeAddress = function(req, res) {
 	var config = req.app.set('config');
 	
 	if ( !req.body.email || req.body.email === '') {
-		// TODO: Return error page. Check in webform as well.
+		params.msg = config.msg.error.emailneeded;
+		res.render( 'error.html', params );
 	} else {
 		
 		// TODO: Check email address. Check in webform as well.
@@ -57,8 +58,8 @@ exports.removeAddress = function(req, res) {
 					}
 				}
  			} else {
-				// TODO: Process error registering
-				console.log( err );
+				params.msg = err;
+				res.render( 'error.html', params );
 			}
 		});
 
@@ -90,13 +91,14 @@ exports.verifyAddress = function(req, res) {
 				
 				res.render( 'remove.html', params );
 			} else {
-				// TODO: Process error registering
-				console.log( err );
+				params.msg = err;
+				res.render( 'error.html', params );
 			}
 		});
 		
 	} else {
-		console.log("Not!");
+		params.msg = config.msg.error.emailnotprovided;
+		res.render( 'error.html', params );
 	}
 	
 
