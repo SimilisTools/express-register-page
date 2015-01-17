@@ -23,10 +23,11 @@ Execute with:
 
 You can use programs such as [forever](https://www.npmjs.com/package/forever) for keeping the application always running.
 
-## TODO
+## TODO/IDEAS
 
 * Move more messages to configuration
   * Allow some degree of i18n 
 * Include more frontend checks (Javascript)
 * Add other plugins (e. g. Twitter)
 * Allow other database options
+* Subscribe/unsubscribe using [Persona](https://github.com/mozilla/persona)
