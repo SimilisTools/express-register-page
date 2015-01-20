@@ -3,9 +3,9 @@
 <div id="wrapper">
 <div id="event" itemscope="" itemtype="http://schema.org/Event">
 	<h1 itemprop="name"><%= event.title %></h1>
-	<p>Primera Viquimarató Bioinformàtica per tal de millorar els continguts de Bioinformàtica i disciplines afins (genòmica, proteòmica, etc.) a la Viquipèdia en català. <a href='https://ca.wikipedia.org/wiki/Viquip%C3%A8dia:Viquimarat%C3%B3_Bioinform%C3%A0tica_2015'>Més detalls...</a></p>
-	<%if (event.start) { %>Inici: <span class="start" itemprop="startDate"><%= event.start %></span><% } %>
-	<%if (event.end) { %>Final: <span class="end" itemprop="endDate"><%= event.end %></span><% } %>
+	<p>Primera <strong>Viquimarató Bioinformàtica</strong> per tal de millorar els <a href="https://ca.wikipedia.org/wiki/Viquiprojecte:Bioinform%C3%A0tica">continguts de Bioinformàtica</a> i disciplines afins (<em>genòmica</em>, <em>proteòmica</em>, etc.) a la Viquipèdia en català. <strong><a href='https://ca.wikipedia.org/wiki/Viquip%C3%A8dia:Viquimarat%C3%B3_Bioinform%C3%A0tica_2015'>Més informació...</a></strong></p>
+	<%if (event.start) { %><strong>Inici:</strong> <span class="date-start" itemprop="startDate"><%= event.start %></span><% } %>
+	<%if (event.end) { %><strong>Final:</strong> <span class="date-end" itemprop="endDate"><%= event.end %></span><% } %>
 
 	<div id="location" itemscope="" itemprop="location" itemtype="http://schema.org/Place">
 		<%if (event.location.name) { %><p itemprop="name"><%- event.location.name %></p><% } %>
