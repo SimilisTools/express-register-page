@@ -30,4 +30,5 @@ You can use programs such as [forever](https://www.npmjs.com/package/forever) fo
 * Include more frontend checks (Javascript)
 * Add other plugins (e. g. Twitter)
 * Allow other database options
+  * Enable a more customisable DB option
 * Subscribe/unsubscribe using [Persona](https://github.com/mozilla/persona)
