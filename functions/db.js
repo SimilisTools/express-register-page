@@ -19,7 +19,7 @@ exports.addinDB = function( params, cb ){
 				if ( !err ) {
 
 					if ( rows.length < 1 ) {
-						var stmt = db.prepare("INSERT INTO Register (name, email, strid, verified) VALUES ('"+ params.name + "', '" + params.email + "', '"+params.strid+"', 0 )");
+						var stmt = db.prepare("INSERT INTO Register (name, email, strid, verified) VALUES ( ?, ?, ?, 0) ", [ params.name, params.email, params.strid ] );
 						stmt.run();
 						stmt.finalize();
 						info = { "msg": "Saved" };
@@ -32,7 +32,7 @@ exports.addinDB = function( params, cb ){
 								cb( err, info );
 								db.close();
 							} else {
-								var stmt = db.prepare("UPDATE Register SET name = '"+ params.name + "', strid = '"+params.strid+"' where email='"+params.email+"'");
+								var stmt = db.prepare("UPDATE Register SET name = ?, strid = ? where email = ? ", [ params.name, params.strid, params.email ] );
 								stmt.run();
 								stmt.finalize();
 								info = { "msg": "Updated" };
@@ -109,7 +109,7 @@ exports.checkinDB = function( params, cb ){
 								cb( err, info );
 								db.close();
 							} else {
-								var stmt = db.prepare("UPDATE Register SET verified = 1 where email='" + params.email + "' AND strid='" + params.strid + "'");
+								var stmt = db.prepare("UPDATE Register SET verified = 1 where email = ? AND strid = ? ", [ params.email, params.strid ] );
 								stmt.run();
 								stmt.finalize();
 								info = { "msg": "Verified" };
@@ -158,7 +158,7 @@ exports.rmvfromDB = function( params, cb ){
 				db.all("SELECT * from Register where email='" + params.email + "'", function(err, rows) {
 					if (! err ) {
 						if ( rows.length > 0 ) {
-							var stmt = db.prepare("UPDATE Register SET rmvid = '"+params.rmvid+"' where email='" + params.email + "'");
+							var stmt = db.prepare("UPDATE Register SET rmvid = ? where email = ? ", [ params.rmvid, params.email ] );
 							stmt.run();
 							stmt.finalize();
 							info = { "msg": "To-remove" };
@@ -205,7 +205,7 @@ exports.checkRmvfromDB = function( params, cb ){
 				db.all("SELECT * from Register where email='" + params.email + "' AND rmvid='" + params.rmvid + "'", function(err, rows) {
 					if (! err ) {
 						if ( rows.length > 0 ) {
-							var stmt = db.prepare("DELETE FROM Register where email='" + params.email + "' AND rmvid='" + params.rmvid + "'");
+							var stmt = db.prepare("DELETE FROM Register where email = ? AND rmvid= ? ", [ params.email, params.rmvid ] );
 							stmt.run();
 							stmt.finalize();
 							info = { "msg": "Removed" };
