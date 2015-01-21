@@ -101,7 +101,7 @@ exports.checkinDB = function( params, cb ){
 			var db = new sqlite3.Database( params.db.file );
 			db.serialize(function() {
 
-				db.all("SELECT verified from Register where email='" + params.email + "' AND strid='" + params.strid + "'", function(err, rows) {
+				db.all("SELECT verified from Register where email = ? AND strid = ? ", [ params.email, params.strid ], function(err, rows) {
 					if (! err ) {
 						if ( rows.length > 0 ) {
 							if ( rows[0].verified ) {
@@ -155,7 +155,7 @@ exports.rmvfromDB = function( params, cb ){
 			var db = new sqlite3.Database( params.db.file );
 			db.serialize(function() {
 
-				db.all("SELECT * from Register where email='" + params.email + "'", function(err, rows) {
+				db.all("SELECT * from Register where email = ? ", [ params.email ], function(err, rows) {
 					if (! err ) {
 						if ( rows.length > 0 ) {
 							var stmt = db.prepare("UPDATE Register SET rmvid = ? where email = ? ", [ params.rmvid, params.email ] );
@@ -202,7 +202,7 @@ exports.checkRmvfromDB = function( params, cb ){
 			var db = new sqlite3.Database( params.db.file );
 			db.serialize(function() {
 
-				db.all("SELECT * from Register where email='" + params.email + "' AND rmvid='" + params.rmvid + "'", function(err, rows) {
+				db.all("SELECT * from Register where email = ? AND rmvid = ?", [ params.email, params.rmvid ], function(err, rows) {
 					if (! err ) {
 						if ( rows.length > 0 ) {
 							var stmt = db.prepare("DELETE FROM Register where email = ? AND rmvid= ? ", [ params.email, params.rmvid ] );
