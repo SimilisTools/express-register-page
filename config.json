@@ -13,10 +13,16 @@
 			},
 			"organizers": [
 				{
+					"name": "Institut d'Estudis Catalans",
+					"img": "logos/IEC-logo.jpg",
+					"width": 200,
+					"url": "http://www.iec.cat/"
+				},
+				{
 					"name": "Societat Catalana de Biologia",
 					"img": "logos/logoSCB_h.png",
 					"width": 200,
-					"url": "http://blogs.iec.cat/scb/"
+					"url": "http://scb.iec.cat/"
 				},
 				{
 					"name": "Amical Wikimedia",
