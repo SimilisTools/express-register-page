@@ -25,9 +25,8 @@ exports.listAllAddresses = function(req, res) {
 	var admin = config.admin;
 	
 	if ( req.body.admin ) {
-		
+
 		if ( admin && admin === req.body.admin ) {
-			
 				db.listAllinDB( { db: config.db }, function( err, info ) {
 				if ( !err ) {
 					res.send( info );

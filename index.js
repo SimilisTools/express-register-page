@@ -62,7 +62,7 @@ app.get( basepath + '/admin', function(req, res){
 	res.render('admin.html', params );
 });
 // Admin get Adresses
-app.post(basepath + '/admin', list.listAllAddresses);
+app.post(basepath + '/admin/list', list.listAllAddresses);
 
 
 // Register address
