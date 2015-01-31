@@ -18,3 +18,33 @@ exports.listAddresses = function(req, res) {
 		}
 	});
 };
+
+exports.listAllAddresses = function(req, res) {
+
+	var config = req.app.set('config');
+	var admin = config.admin;
+	
+	if ( req.body.admin ) {
+		
+		if ( admin && admin === req.body.admin ) {
+			
+				db.listAllinDB( { db: config.db }, function( err, info ) {
+				if ( !err ) {
+					res.send( info );
+				} else {
+					// TODO: Process error registering
+					res.send();
+				}
+			});
+		} else {
+			// TODO: Handle error here
+			res.send();
+		}
+		
+	} else {
+		
+		// TODO: Handle error here
+		res.send();
+	}
+
+};

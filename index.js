@@ -51,7 +51,16 @@ app.get( basepath + '/', function(req, res){
 	params.basepath = basepath;
 	params.contact = config.contact;
 	res.render('index.html', params );
-})
+});
+
+// Admin
+app.get( basepath + '/admin', function(req, res){
+	var params = {};
+	params.event = config.event;
+	params.basepath = basepath;
+	params.contact = config.contact;
+	res.render('admin.html', params );
+});
 
 // Register address
 app.post(basepath + '/register', register.registerAddress);

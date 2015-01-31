@@ -89,6 +89,35 @@ exports.listinDB = function( params, cb ){
 	
 };
 
+exports.listAllinDB = function( params, cb ){
+
+	var info = [];
+	var err = null;
+	
+	if ( params.db && params.db.type && params.db.file ) {
+
+		var db = new sqlite3.Database( params.db.file );
+		db.serialize(function() {
+
+			db.all("SELECT name, email, verified from Register", function(err, rows) {
+				if (! err ) {
+					cb( err, rows );
+				} else {
+					err = { "msg": "Error retrieving" };
+					cb( err, info );
+				}
+			});
+			
+		});
+		
+		db.close();
+	} else {
+		err = { "msg": "No DB connection" };
+		cb( err, info );
+	}
+	
+};
+
 exports.checkinDB = function( params, cb ){
 
 	var info = [];
