@@ -53,7 +53,7 @@ app.get( basepath + '/', function(req, res){
 	res.render('index.html', params );
 });
 
-// Admin
+// Admin landing
 app.get( basepath + '/admin', function(req, res){
 	var params = {};
 	params.event = config.event;
@@ -61,6 +61,9 @@ app.get( basepath + '/admin', function(req, res){
 	params.contact = config.contact;
 	res.render('admin.html', params );
 });
+// Admin get Adresses
+app.post(basepath + '/admin', list.listAllAddresses);
+
 
 // Register address
 app.post(basepath + '/register', register.registerAddress);
