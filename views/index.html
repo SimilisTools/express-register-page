@@ -3,8 +3,8 @@
 <div id="wrapper">
 <div id="event" itemscope="" itemtype="http://schema.org/Event">
 	<h1 itemprop="name"><%= event.title %></h1>
-	<p>El <em>divendres 27 de febrer</em> tindrà lloc la primera <strong>Viquimarató Bioinformàtica</strong> per tal de millorar els <a href="https://ca.wikipedia.org/wiki/Viquiprojecte:Bioinform%C3%A0tica">continguts de Bioinformàtica</a> i disciplines afins (<em>genòmica</em>, <em>proteòmica</em>, etc.) a la Viquipèdia en català.</p>
-	<p><strong><a href='https://ca.wikipedia.org/wiki/Viquip%C3%A8dia:Viquimarat%C3%B3_Bioinform%C3%A0tica_2015'>Més informació...</a></strong></p>
+	<%= event.htmldesc %>
+	<p><strong><a href='<%= event.endpage %>'>Més informació...</a></strong></p>
 	<%if (event.start) { %><strong>Inici:</strong> <span class="date-start" itemprop="startDate"><%= event.start %></span><% } %>
 	<%if (event.end) { %><strong>Final:</strong> <span class="date-end" itemprop="endDate"><%= event.end %></span><% } %>
 
@@ -17,12 +17,8 @@
 	</div>
 	<h4>Què cal portar-hi?</h4>
 	<ul>
-		<li>Un ordinador portàtil per poder editar a la Viquipèdia des d'allà</li>
+		<li>Un ordinador portàtil</li>
 	</ul>
-	<h4>Enllaços</h4>
-		<ul>
-			<li><a href="http://scb.iec.cat/primera-viquimarato-bioinformatica-2/">Notícia i nota de premsa</a></li>
-		</ul>
 </div>
 <div id="action">
 <div id="registration">
