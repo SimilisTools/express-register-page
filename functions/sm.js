@@ -6,7 +6,7 @@ var emailTemplates = require('email-templates');
 
 exports.sendMail = function( params, method, extra, cb ) {
 
-	emailTemplates( params.templates, function(err, template ) {
+	new emailTemplates( params.templates, function(err, template ) {
 
 		if (err) {
 			console.log(err);
@@ -26,6 +26,7 @@ exports.sendMail = function( params, method, extra, cb ) {
 			
 			var subject = "["+extra.event.title+"] - "+method;
 			
+			console.log( subject );
 			// Send a single email
 			template( method, extra, function(err, html, text) {
 				if (err) {
@@ -39,6 +40,8 @@ exports.sendMail = function( params, method, extra, cb ) {
 						html: html,
 						text: text
 					}, function(err, info){
+						console.log( info );
+						console.log( err );
 						cb( err, info );
 					});
 				}
