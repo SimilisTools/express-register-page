@@ -4,10 +4,19 @@
 <div id="event" itemscope="" itemtype="http://schema.org/Event">
 	<h1 itemprop="name"><%= event.title %></h1>
 	<%= event.htmldesc %>
-	<p><strong><a href='<%= event.endpage %>'>Més informació...</a></strong></p>
+	<p><strong><a href='<%= event.endpage %>'>Més informació</a></strong></p>
 	<%if (event.start) { %><strong>Inici:</strong> <span class="date-start" itemprop="startDate"><%= event.start %></span><% } %>
 	<%if (event.end) { %><strong>Final:</strong> <span class="date-end" itemprop="endDate"><%= event.end %></span><% } %>
 
+	<div id="registration">
+	<h2>Inscripció</h2>
+	<form action="<%= basepath %>/register" method="POST">
+	<input type="text" name="name" placeholder="Nom a mostrar (opcional)"><br>
+	<input type="text" name="email" placeholder="Adreça electrònica"><br>
+	<input type="submit" value="Registre"><br>
+	</form>
+	</div>
+	
 	<div id="location" itemscope="" itemprop="location" itemtype="http://schema.org/Place">
 		<%if (event.location.name) { %><p itemprop="name"><%- event.location.name %></p><% } %>
 		<%if (event.location.address) { %><p itemprop="address"><%= event.location.address %></p><% } %>
@@ -19,23 +28,16 @@
 	<ul>
 		<li>Un ordinador portàtil</li>
 	</ul>
+	<div id="removal">
+	<h2>Desinscripció</h2>
+	<form action="<%= basepath %>/remove" method="POST">
+	<input type="text" name="email" placeholder="Adreça electrònica"><br>
+	<input type="submit" value="Suprimeix"><br>
+	</form>
+	</div>
 </div>
 <div id="action">
-<div id="registration">
-<h2>Inscripció</h2>
-<form action="<%= basepath %>/register" method="POST">
-<input type="text" name="name" placeholder="Nom a mostrar (opcional)"><br>
-<input type="text" name="email" placeholder="Adreça electrònica"><br>
-<input type="submit" value="Registre"><br>
-</form>
-</div>
-<div id="removal">
-<h2>Desinscripció</h2>
-<form action="<%= basepath %>/remove" method="POST">
-<input type="text" name="email" placeholder="Adreça electrònica"><br>
-<input type="submit" value="Suprimeix"><br>
-</form>
-</div>
+<h2>Participants</h2>
 <div id="list">
 </div>
 </div>
