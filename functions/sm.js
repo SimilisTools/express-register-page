@@ -2,11 +2,11 @@
 
 var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
-var ejs = require("ejs");
+var ejs = require('ejs');
 
 exports.sendMail = function( params, method, extra, cb ) {
 
-	ejs.renderFile( params.templates + "/" + method + ".ejs", params, function (err, data) {
+	ejs.renderFile( params.templates + "/" + method + "/html.ejs", extra, function (err, data) {
 
 		var transporter;
 		if ( params.type === 'sendmail' ) {
