@@ -50,7 +50,7 @@
 			"file": "register.db"
 		},
 		"contact": {
-			"mail": "toniher@wikimedia.cat"
+			"email": "toniher@wikimedia.cat"
 		},
 		"port": 3000,
 		"basepath": "/marato-bioinf-2015",
