@@ -87,7 +87,7 @@ $( document ).ready(function() {
 			],
 			view: new ol.View({
 			  center: ol.proj.transform(coordsFloat, 'EPSG:4326', 'EPSG:3857'),
-			  zoom: 14
+			  zoom: 16
 			})
 			});
 		
