@@ -7,6 +7,15 @@
 	<p><strong><a href='<%= event.endpage %>'>Més informació</a></strong></p>
 	<%if (event.start) { %><strong>Inici:</strong> <span class="date-start" itemprop="startDate"><%= event.start %></span><% } %>
 	<%if (event.end) { %><strong>Final:</strong> <span class="date-end" itemprop="endDate"><%= event.end %></span><% } %>
+	
+	<div id="location" itemscope="" itemprop="location" itemtype="http://schema.org/Place">
+		<h3>Lloc:</h3>
+		<%if (event.location.name) { %><p itemprop="name"><%- event.location.name %></p><% } %>
+		<%if (event.location.address) { %><p itemprop="address"><%= event.location.address %></p><% } %>
+		<%if (event.location.coordinates) { %>
+				<div id="map" data-coords="<%= event.location.coordinates %>"></div>
+		<% } %>
+	</div>
 
 	<div id="registration">
 	<h2>Inscripció</h2>
@@ -17,13 +26,6 @@
 	</form>
 	</div>
 	
-	<div id="location" itemscope="" itemprop="location" itemtype="http://schema.org/Place">
-		<%if (event.location.name) { %><p itemprop="name"><%- event.location.name %></p><% } %>
-		<%if (event.location.address) { %><p itemprop="address"><%= event.location.address %></p><% } %>
-		<%if (event.location.coordinates) { %>
-				<div id="map" data-coords="<%= event.location.coordinates %>"></div>
-		<% } %>
-	</div>
 	<h4>Què cal portar-hi?</h4>
 	<ul>
 		<li>Un ordinador portàtil</li>
