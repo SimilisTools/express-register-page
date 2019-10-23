@@ -30,9 +30,19 @@ exports.registerAddress = function(req, res) {
 		var email = req.body.email;
 		options.email = email;
 		
+		var tramesa = 0;
+		if ( req.body.tramesa ) {
+			tramesa = req.body.tramesa;
+		}
+		
+		var attend = 0;
+		if ( req.body.attend ) {
+			attend = req.body.attend;
+		}
+		
 		var randomString = rs(); // TODO: Function for random string
 
-		db.addinDB( { email: email , name: name, strid: randomString, db: config.db }, function( err, info ) {
+		db.addinDB( { email: email , name: name, strid: randomString, tramesa: tramesa, attend: attend, db: config.db }, function( err, info ) {
 			if ( !err ) {
 				// TODO: Depending on info outcome
 				// Send message or not
