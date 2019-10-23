@@ -11,7 +11,7 @@ exports.addinDB = function( params, cb ){
 		
 		var db = new sqlite3.Database( params.db.file );
 		db.serialize(function() {
-			db.run('create table if not exists Register (name TEXT, email TEXT, strid TEXT, rmvid TEXT, verified BOOLEAN)');
+			db.run('create table if not exists Register (name TEXT, email TEXT, strid TEXT, rmvid TEXT, verified BOOLEAN, tramesa BOOLEAN, attend INT)');
 		
 			// Let's check if email
 			db.all("SELECT verified from Register where email = '" + params.email + "'", function(err, rows) {
@@ -19,7 +19,7 @@ exports.addinDB = function( params, cb ){
 				if ( !err ) {
 
 					if ( rows.length < 1 ) {
-						var stmt = db.prepare("INSERT INTO Register (name, email, strid, verified) VALUES ( ?, ?, ?, 0) ", [ params.name, params.email, params.strid ] );
+						var stmt = db.prepare("INSERT INTO Register (name, email, strid, verified, tramesa, attend) VALUES ( ?, ?, ?, ?, ?, ?) ", [ params.name, params.email, params.strid, 0, params.tramesa, params.attend ] );
 						stmt.run();
 						stmt.finalize();
 						info = { "msg": "Saved" };
@@ -32,7 +32,7 @@ exports.addinDB = function( params, cb ){
 								cb( err, info );
 								db.close();
 							} else {
-								var stmt = db.prepare("UPDATE Register SET name = ?, strid = ? where email = ? ", [ params.name, params.strid, params.email ] );
+								var stmt = db.prepare("UPDATE Register SET name = ?, strid = ?, tramesa = ?, attend = ? where email = ? ", [ params.name, params.strid, params.tramesa, params.attend, params.email ] );
 								stmt.run();
 								stmt.finalize();
 								info = { "msg": "Updated" };
