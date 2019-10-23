@@ -13,16 +13,21 @@
 		<%if (event.location.name) { %><p itemprop="name"><%- event.location.name %></p><% } %>
 		<%if (event.location.address) { %><p itemprop="address"><%= event.location.address %></p><% } %>
 	</div>
-
+		
 	<div id="registration">
 	<h2>Inscripció</h2>
 	<form action="<%= basepath %>/register" method="POST">
 	<input type="text" name="name" placeholder="Nom a mostrar (opcional)"><br>
 	<input type="text" name="email" placeholder="Adreça electrònica"><br>
+	<select name="attend">
+		<option value="0">Vindré a tota la jornada (de 10:00 a 17:00)</option>
+		<option value="1">Vindré només a les píndoles formatives (de 10:00 a 11:30)</option>
+		<option value="2">Vindré només a la datató (de 12:00 a 17:30)</option>
+	</select>
+	<input type="checkbox" name="tramesa">Estic interessat/ada en rebre informació periòdica sobre novetats i actes relacionats amb dades obertes (tramesa gestionada per la Secretaria de Transparència i Govern Obert)</input>
 	<input type="submit" value="Registre"><br>
 	</form>
 	</div>
-	
 	
 	<%if (event.location.coordinates) { %>
 				<div id="map" data-coords="<%= event.location.coordinates %>"></div>
