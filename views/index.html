@@ -9,7 +9,7 @@
 	<%if (event.end) { %><strong>Final:</strong> <span class="date-end" itemprop="endDate"><%= event.end %></span><% } %>
 	
 	<div id="location" itemscope="" itemprop="location" itemtype="http://schema.org/Place">
-		<h3>Lloc:</h3>
+		<h4>Lloc:</h4>
 		<%if (event.location.name) { %><p itemprop="name"><%- event.location.name %></p><% } %>
 		<%if (event.location.address) { %><p itemprop="address"><%= event.location.address %></p><% } %>
 	</div>
@@ -17,8 +17,8 @@
 	<div id="registration">
 	<h2>Inscripció</h2>
 	<form action="<%= basepath %>/register" method="POST">
-	<input type="text" name="name" placeholder="Nom a mostrar (opcional)"><br>
-	<input type="text" name="email" placeholder="Adreça electrònica"><br>
+	<input type="text" name="name" placeholder="Nom a mostrar (opcional)" required><br>
+	<input type="text" name="email" placeholder="Adreça electrònica" required><br>
 	<select name="attend">
 		<option value="0">Vindré a tota la jornada (de 10:00 a 17:00)</option>
 		<option value="1">Vindré només a les píndoles formatives (de 10:00 a 11:30)</option>
@@ -46,7 +46,7 @@
 	<div id="removal">
 	<h2>Cancel·la la inscripció</h2>
 	<form action="<%= basepath %>/remove" method="POST">
-	<input type="text" name="email" placeholder="Adreça electrònica"><br>
+	<input type="text" name="email" placeholder="Adreça electrònica" required><br>
 	<input type="submit" value="Suprimeix"><br>
 	</form>
 	</div>
