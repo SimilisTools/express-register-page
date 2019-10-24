@@ -33,6 +33,11 @@ exports.registerAddress = function(req, res) {
 		var tramesa = 0;
 		if ( req.body.tramesa ) {
 			tramesa = req.body.tramesa;
+			if ( tramesa == "on" ) {
+				tramesa = 1;
+			} else {
+				tramesa = 0;
+			}
 		}
 		
 		var attend = 0;
