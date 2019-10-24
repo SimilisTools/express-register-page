@@ -99,7 +99,7 @@ exports.listAllinDB = function( params, cb ){
 		var db = new sqlite3.Database( params.db.file );
 		db.serialize(function() {
 
-			db.all("SELECT name, email, verified from Register", function(err, rows) {
+			db.all("SELECT name, email, verified, tramesa, attend from Register", function(err, rows) {
 				if (! err ) {
 					cb( err, rows );
 				} else {

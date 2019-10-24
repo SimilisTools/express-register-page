@@ -116,7 +116,15 @@ $( document ).ready(function() {
 					str = str + "<" + this.email +">";
 					
 					if ( this.verified === 1 ) {
-						str = str + " VERIFIED";
+						str = str + " VERIFIED ";
+					}
+					
+					if ( this.tramesa ) {
+						str = str + " REP GENCAT";
+					}
+					
+					if ( this.attend ) {
+						str = str + " FRANJA " + this.attend;
 					}
 					
 					str = str + "</li>";
